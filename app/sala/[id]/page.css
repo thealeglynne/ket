@@ -47,7 +47,7 @@ h1 {
 }
 
 /* Botón de cerrar sesión */
-.logout-btn {
+.logout-btnL {
     margin-top: 15px;
     background: linear-gradient(45deg, #ff416c, #ff4b2b);
     color: white;
@@ -55,7 +55,8 @@ h1 {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 16px;
+    width: 10%;
+    font-size: 10px;
     font-weight: bold;
     transition: transform 0.2s, box-shadow 0.3s;
 }
@@ -93,11 +94,12 @@ h1 {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    
     padding: 10px;
     background-color: #29293d;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    color: white;
+    color: rgba(232, 227, 227, 0.5);
     font-size: 14px;
 }
 
@@ -105,6 +107,7 @@ h1 {
     margin-top: 8px;
     font-size: 12px;
     color: #aaa;
+    width: 100px;
 }
 
 .message.moderator {
@@ -167,6 +170,7 @@ button[type="submit"] {
     padding: 12px 20px;
     border: none;
     border-radius: 25px;
+
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;

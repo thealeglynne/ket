@@ -1,10 +1,17 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const messageRoutes = require('./routes/messages');
+const { Sequelize } = require('sequelize');
+
+// Crear la conexión a la base de datos MySQL
+const sequelize = new Sequelize('chat_db', 'root', 'tu_contraseña', {
+  host: 'localhost',  // Cambia el host si estás utilizando un servidor remoto
+  dialect: 'mysql',
+  logging: false, // Puedes activar esto para ver las consultas SQL en la consola
+});
 
 const app = express();
 
@@ -13,16 +20,16 @@ app.use(cookieParser());
 
 // Configurar sesiones
 app.use(session({
-  secret: 'mySecretKey',  // Clave secreta para firmar las sesiones
+  secret: 'mySecretKey',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }  // Cambiar a `true` si usas HTTPS
+  cookie: { secure: false }  // Cambia a `true` si usas HTTPS
 }));
 
-// Conexión a la base de datos
-mongoose.connect('mongodb://localhost:27017/chatApp', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Conectado a la base de datos'))
-  .catch(err => console.error('Error de conexión:', err));
+// Probar la conexión con la base de datos
+sequelize.authenticate()
+  .then(() => console.log('Conectado a la base de datos MySQL'))
+  .catch((err) => console.error('No se pudo conectar a la base de datos:', err));
 
 app.use(cors());
 app.use(express.json());

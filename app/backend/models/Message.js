@@ -1,11 +1,29 @@
-import mongoose from 'mongoose';
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = new Sequelize('chat_db', 'root', 'tu_contraseña', {
+  host: 'localhost',
+  dialect: 'mysql',
+});
 
-const messageSchema = new mongoose.Schema({
-  user: { type: String, required: true },
-  message: { type: String, required: true },
-  isModerator: { type: Boolean, default: false },
-}, { timestamps: true });
+// Definir el modelo Message
+const Message = sequelize.define('Message', {
+  user: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  message: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  isModerator: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+}, {
+  timestamps: true,
+});
 
-const Message = mongoose.models.Message || mongoose.model('Message', messageSchema);
+sequelize.sync()  // Sincroniza la base de datos
+  .then(() => console.log('Tabla Message sincronizada'))
+  .catch((err) => console.error('No se pudo sincronizar la tabla Message:', err));
 
-export default Message;
+module.exports = Message;

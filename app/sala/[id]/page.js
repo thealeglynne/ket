@@ -105,7 +105,7 @@ const Sala = () => {
         </form>
         
       </div>
-      <button onClick={handleLogout} className="logout-btn">Cerrar sesión</button>
+      <button onClick={handleLogout} className="logout-btnL">Cerrar sesión</button>
 
     </div>
   );

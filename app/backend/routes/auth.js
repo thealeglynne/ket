@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const User = require('../models/User');  // Asegúrate de tener un modelo de usuario en MongoDB
+const User = require('../models/User');  // Usamos el modelo de Sequelize
 const router = express.Router();
 
 // Ruta de inicio de sesión
@@ -9,8 +9,8 @@ router.post('/login', async (req, res) => {
 
   try {
     // Buscar al usuario en la base de datos
-    const user = await User.findOne({ username });
-    
+    const user = await User.findOne({ where: { username } });
+
     if (!user) return res.status(400).json({ message: 'Usuario no encontrado' });
 
     // Verificar la contraseña
