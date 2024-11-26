@@ -1,0 +1,174 @@
+/* Fondo de superposición (blur con fondo oscuro) */
+.background-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+  transition: all 0.7s ease; /* Transición para la aparición del fondo */
+}
+
+.background-overlay.active {
+  display: block;
+  opacity: 1; /* Asegura que sea visible al activarse */
+}
+
+/* Contenedor del pop-up */
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(103, 101, 101, 0.591); /* Fondo claro */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 50px;
+  max-width: 900px;
+  width: 50%;
+  text-align: center;
+  z-index: 2;
+  height: 30vh; /* Alto del pop-up */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra para el pop-up */
+  opacity: 0; /* Inicialmente oculto */
+  transition: all 0.7s ease; /* Transición suave para la aparición */
+}
+
+.popup-container.active {
+  display: block;
+  opacity: 1; /* Se vuelve visible cuando se activa */
+}
+
+/* Estilos del formulario dentro del pop-up */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrado horizontal */
+  justify-content: center; /* Centrado vertical */
+  width: 100%;
+  transition: all 0.7s ease; /* Transición suave */
+}
+
+/* Estilo de los inputs dentro del formulario */
+input[type="text"],
+input[type="password"] {
+  width: 80%; /* Ajuste del ancho de los inputs */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: rgb(159, 42, 42); /* Color del texto en los inputs */
+  text-align: center; /* Centra el texto dentro del input */
+  filter: opacity(70%); /* Transparencia */
+  transition: all 0.7s ease; /* Transición para los inputs */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #5f5f5f; /* Color de borde cuando el input está enfocado */
+  filter: opacity(100%); /* El input se hace más visible cuando se enfoca */
+}
+
+/* Estilo del botón de envío */
+button[type="submit"] {
+  background-color: rgb(121, 121, 10); /* Color de fondo del botón */
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.7s ease, transform 0.3s ease; /* Transición suave */
+  width: 80%; /* Ajuste del tamaño del botón */
+}
+
+button[type="submit"]:hover {
+  background-color: #b6b6b6; /* Color de fondo cuando se pasa el mouse */
+  color: #000;
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el mouse */
+}
+
+/* Estilos para los textos de título */
+.titleLogion {
+  color: #909090;
+  font-size: 17px;
+  transition: color 0.7s ease; /* Transición para color */
+}
+
+.usernameText {
+  padding: 15px;
+  color: #909090;
+  position: relative;
+  left: -33%;
+  font-size: 13px;
+  transition: color 0.7s ease; /* Transición para color */
+}
+
+.RememberMeText {
+  text-decoration: none;
+  color: #909090;
+  position: relative;
+  top: -15px;
+  left: -31%;
+  font-size: 14px;
+  padding: 10px;
+  transition: color 0.7s ease; /* Transición para color */
+}
+
+.RememberMeText:hover {
+  color: #000000;
+  transition: color 0.7s ease; /* Transición para el hover */
+}
+
+/* Estilos para el título dentro del formulario */
+.titleLoguin {
+  color: rgb(56, 131, 131);
+  font-size: 15px;
+  position: relative;
+  padding: 10px;
+  top: -30px;
+  width: 100px;
+  height: 30px;
+  transition: color 0.7s ease; /* Transición para color */
+}
+
+/* Estilos del contenedor de los inputs */
+.InputsContainer {
+  width: 80%; /* Ajuste del tamaño del contenedor */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrado de los inputs dentro del contenedor */
+}
+
+/* Estilo para el botón de cierre del pop-up */
+.close-btn {
+  background-color: rgb(73, 72, 72);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 80px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  border-radius: 5px;
+  transition: background-color 0.7s ease, transform 0.3s ease; /* Transición para color y tamaño */
+}
+
+.close-btn:hover {
+  color: #000;
+  background-color: #bcbcbc; /* Cambio de color al pasar el mouse */
+  transform: scale(1.1); /* Aumenta el tamaño del botón al hacer hover */
+}
+
+/* Estilo para el mensaje de error */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center; /* Centra el mensaje de error */
+  transition: color 0.7s ease; /* Transición para color */
+}

@@ -1,0 +1,105 @@
+/* Contenedor principal con imagen de fondo */
+.home-container {
+  width: 100%;
+  height: 100vh;
+  background-image: url('/img/q1.gif'); /* Ruta correcta de la imagen en la carpeta public */
+  background-size: 80%; /* Asegura que la imagen cubra toda la sección */
+  background-position: center; /* Centra la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+body{
+  background-color: black;
+}
+
+/* Contenedor de contenido */
+.content-container {
+  width: 50%;
+  
+  background-color: rgba(83, 83, 83, 0.299); /* Fondo blanco translúcido para el contenido */
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center; /* Centra el texto */
+}
+
+/* Título */
+.title {
+  font-size: 3.4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+}
+
+/* Descripción */
+.description {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #f2f2f2;
+  line-height: 1.5;
+  position: relative;
+  top: -30px;
+  max-width: 80%;
+}
+
+/* Instrucción adicional */
+.instruction {
+  position: relative;
+  top: -50px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Texto de pie de página */
+.footer-text {
+  font-size: 1.6rem;
+  color: rgb(255, 255, 255);
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Botón de inicio de sesión */
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: rgb(254, 254, 254);
+  color: rgb(36, 34, 34);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.6;
+}
+
+button:hover {
+  background-color: #222222;
+  transition: 0.6;
+  color: #ffffff;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+  .content-container {
+    width: 90%;
+    height: auto;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+}
