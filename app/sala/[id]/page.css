@@ -1,151 +1,193 @@
-/* Contenedor principal de la página */
+/* Contenedor principal */
 .sala-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #1c1c1c; /* Fondo oscuro para un estilo más moderno */
+    background: linear-gradient(135deg, #1f1f1f, #121212);
     color: white;
-    height: 100vh;
-  }
-  
-  /* Estilo para el cuerpo */
-  body {
+    min-height: 100vh;
+    overflow-y: auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Fondo general */
+body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Fondo oscuro similar a Twitch */
-  }
-  
-  /* Contenedor del video */
-  .video-container {
-    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d0d0d; /* Fondo oscuro */
+    color: #fff;
+}
+
+/* Video */
+.video-container {
     width: 100%;
     max-width: 960px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
     overflow: hidden;
-  }
-  
-  iframe {
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.8);
+    background-color: #222;
+}
+
+iframe {
     width: 100%;
     height: 400px;
     border: none;
-    border-radius: 10px;
-  }
-  
-  /* Estilo de los mensajes */
-  .chat-container {
+    border-radius: 15px;
+}
+
+/* Título de la sala */
+h1 {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #00d8ff; /* Azul neón */
+    font-weight: bold;
+    text-shadow: 0 4px 8px rgba(0, 216, 255, 0.7);
+}
+
+/* Botón de cerrar sesión */
+.logout-btn {
+    margin-top: 15px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.logout-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(255, 65, 108, 0.8);
+}
+
+/* Contenedor del chat */
+.chat-container {
     width: 100%;
     max-width: 800px;
-    background-color: #2c2f3b;
+    background-color: #1e1e2c;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
     margin-top: 20px;
-  }
-  
-  /* Contenedor de mensajes */
-  .messages {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mensajes */
+.messages {
     max-height: 300px;
     overflow-y: auto;
-  }
-  
-  /* Estilo individual de los mensajes */
-  .message {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: linear-gradient(180deg, #161625, #1e1e2c);
+    border-radius: 10px;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 15px;
-    padding: 15px;
-    background-color: #333;
+    padding: 10px;
+    background-color: #29293d;
     border-radius: 8px;
-    border: 1px solid #444;
-  }
-  
-  .message.moderator {
-    background-color: #00796b; /* Diferenciar moderador */
-    border-color: #004d40;
-  }
-  
-  .message strong {
-    color: #00e676;
-  }
-  
-  /* Botones */
-  button {
-    background-color: transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 14px;
+}
+
+.message span {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.message.moderator {
+    border-left: 4px solid #00d8ff;
+    background-color: #1c1c2e;
+}
+
+/* Etiqueta de moderador */
+.moderator-tag {
+    font-size: 12px;
+    color: #00d8ff;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* Botones de eliminar y editar */
+button {
+    background: transparent;
     border: none;
-    color: #00e676;
+    color: #ff006e;
     cursor: pointer;
     font-size: 14px;
-    margin-left: 10px;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-  }
-  
-  button:hover {
+    margin-left: 5px;
+    width: 20%;
+    transition: color 0.3s ease;
+}
+
+button:hover {
+    color: #ff4081;
     text-decoration: underline;
-    color: #80e27e;
-  }
-  
-  /* Estilo del formulario */
-  form {
+}
+
+/* Formulario */
+form {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-  }
-  
-  input {
-    width: 80%;
-    padding: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
     margin-right: 10px;
     border: 1px solid #444;
-    border-radius: 5px;
+    border-radius: 25px;
     background-color: #222;
     color: white;
     font-size: 14px;
-  }
-  
-  input:focus {
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
     outline: none;
-    border-color: #00e676;
-  }
-  
-  button[type="submit"] {
-    background-color: #00e676;
+    border-color: #00d8ff;
+}
+
+button[type="submit"] {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
     color: white;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #80e27e;
-  }
-  
-  /* Estilo del encabezado */
-  h1 {
-    margin-top: 20px;
-    font-size: 2em;
-    color: #00e676;
-    font-weight: bold;
-  }
-  
-  /* Estilo para el botón de Cerrar sesión */
-  button.logout-btn {
-    margin-top: 10px;
-    background-color: #f44336;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 14px;
-  }
-  
-  button.logout-btn:hover {
-    background-color: #d32f2f;
-  }
-  
-  /* Estilos para la sobrecarga de la página */
-  button, input {
-    font-family: 'Arial', sans-serif;
-  }
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+button[type="submit"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(101, 45, 252, 0.7);
+}
+
+/* Scroll personalizado */
+.messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #00d8ff;
+}

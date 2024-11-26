@@ -1,7 +1,8 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from './page.css';
+import styles from './page.css'; // Asegúrate de que esta ruta coincida con tu archivo CSS
 
 const Sala = () => {
   const [messages, setMessages] = useState([]);
@@ -11,37 +12,38 @@ const Sala = () => {
   const [user, setUser] = useState(null); // Para guardar el usuario logueado
   const router = useRouter();
 
-  // Simulación de autenticación usando localStorage
   useEffect(() => {
-    const loggedUser = localStorage.getItem('user'); // Verifica si hay un usuario logueado
+    const loggedUser = localStorage.getItem('user');
     if (!loggedUser) {
-      router.push('/login'); // Si no está logueado, redirige a la página de login
+      router.push('/page');
     } else {
-      setUser(loggedUser); // Si está logueado, se guarda el usuario
+      setUser(loggedUser); // Establecer el usuario logueado
     }
   }, [router]);
 
-  // Función para manejar el cierre de sesión
   const handleLogout = () => {
-    localStorage.removeItem('user'); // Elimina al usuario del localStorage
-    router.push('/'); // Redirige al usuario a la página de login
+    localStorage.removeItem('user');
+    router.push('/');
   };
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    const newMsg = {
-      id: messages.length + 1,
+
+    if (!newMessage.trim()) return;
+
+    const newMessageObj = {
+      id: Date.now(),
       user: user,
       message: newMessage,
-      isModerator: user === 'moderator', // Simula si el usuario es moderador
+      isModerator: user === 'moderator',
     };
-    setMessages([...messages, newMsg]);
+
+    setMessages((prevMessages) => [...prevMessages, newMessageObj]);
     setNewMessage('');
   };
 
   const handleDeleteMessage = (id) => {
-    const updatedMessages = messages.filter((msg) => msg.id !== id);
-    setMessages(updatedMessages);
+    setMessages(messages.filter((msg) => msg.id !== id));
   };
 
   const handleEditMessage = (id) => {
@@ -53,13 +55,9 @@ const Sala = () => {
 
   const handleUpdateMessage = (e) => {
     e.preventDefault();
-    const updatedMessage = {
-      id: messageToEdit.id,
-      user: messageToEdit.user,
-      message: newMessage,
-    };
+
     const updatedMessages = messages.map((msg) =>
-      msg.id === updatedMessage.id ? updatedMessage : msg
+      msg.id === messageToEdit.id ? { ...msg, message: newMessage } : msg
     );
     setMessages(updatedMessages);
     setEditMode(false);
@@ -72,7 +70,7 @@ const Sala = () => {
         <iframe
           width="100%"
           height="400"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Ejemplo de video
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
           title="Clase Virtual"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -80,44 +78,35 @@ const Sala = () => {
         ></iframe>
       </div>
 
-      <h1>Bienvenido a la Sala de {user}</h1>
+      <h1>Bienvenido {user}</h1> 
       
-      {/* Botón de Cerrar sesión */}
-      <button onClick={handleLogout}>Cerrar sesión</button>
-
       <div className="chat-container">
         <div className="messages">
           {messages.map((msg) => (
             <div key={msg.id} className={`message ${msg.isModerator ? 'moderator' : ''}`}>
-              <strong>{msg.user}:</strong> {msg.message}
-              {msg.isModerator ? <span>(Moderador)</span> : null}
+              <p>{msg.message}</p>
+              <span>{msg.user}</span>
+              {msg.isModerator && <span className="moderator-tag">(Moderador)</span>}
               <button onClick={() => handleDeleteMessage(msg.id)}>Eliminar</button>
               <button onClick={() => handleEditMessage(msg.id)}>Editar</button>
             </div>
           ))}
         </div>
-        {editMode ? (
-          <form onSubmit={handleUpdateMessage}>
-            <input
-              type="text"
-              placeholder="Escribe un mensaje..."
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-            />
-            <button type="submit">Actualizar</button>
-          </form>
-        ) : (
-          <form onSubmit={handleSendMessage}>
-            <input
-              type="text"
-              placeholder="Escribe un mensaje..."
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-            />
-            <button type="submit">Enviar</button>
-          </form>
-        )}
+
+        <form onSubmit={editMode ? handleUpdateMessage : handleSendMessage}>
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Escribe un mensaje"
+          />
+          <button type="submit">{editMode ? 'Actualizar' : 'Enviar'}</button>
+          
+        </form>
+        
       </div>
+      <button onClick={handleLogout} className="logout-btn">Cerrar sesión</button>
+
     </div>
   );
 };

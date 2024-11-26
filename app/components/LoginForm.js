@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import "../styes/login.css"; // Asegúrate de tener el archivo CSS para los estilos
 
@@ -11,7 +12,7 @@ export default function LoginForm() {
   const router = useRouter(); // Hook para enrutamiento
 
   // Verificar si el usuario ya está autenticado al cargar el componente
-  React.useEffect(() => {
+  useEffect(() => {
     const user = localStorage.getItem('user');
     if (user) {
       router.push(`/sala/${user}`);  // Redirigir al usuario si ya está autenticado
